@@ -5,4 +5,5 @@ export interface Client {
     phone: string;
     balance: number;
     email: string;
+    active?: boolean;
 }

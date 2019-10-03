@@ -1,10 +1,16 @@
 
 <div class="row my-4">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <h1>List clients</h1>
     </div>
-    <div class="col-md-6 text-right">
-        <a href="" class="btn btn-primary btn-sm">
+
+    <div class="col-md-4 text-center">
+        <h4>
+           <span class="badge badge-success">{{ total }}</span> 
+        </h4>  
+    </div>
+    <div class="col-md-4 text-right">
+        <a routerLink="/clients/create" class="btn btn-primary btn-sm">
             <i class="fa fa-user"></i>
         </a>
     </div>
@@ -23,7 +29,13 @@
             </thead>
             <tbody>
                 <tr *ngFor="let client of clients">
-                    <td>{{ client.firstName }} {{ client.lastName }}</td>
+                    <td> <span class="mx-2">
+                        <i 
+                          (click)="activeClient(client)"
+                          [ngStyle]="{ color: client.active ? 'light-green' : 'red'  }" 
+                          class="fa fa-power-off">
+                        </i>
+                    </span>  {{ client.firstName }} {{ client.lastName }}</td>
                     <td>
                         <span class="badge badge-success">Email</span> {{ client.email }} <br>
                         <span class="badge badge-info">Phone</span> {{ client.phone }}
@@ -33,7 +45,7 @@
                         <a href="" class="btn btn-warning btn-sm mr-1">
                             <i class="fa fa-pencil"></i>
                         </a>
-                        <button class="btn btn-dark btn-sm">
+                        <button (click)="deleteClient(client.id)" class="btn btn-dark btn-sm">
                             <i class="fa fa-times"></i>
                         </button>
                     </td>
