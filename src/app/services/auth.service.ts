@@ -21,4 +21,8 @@ export class AuthService {
   isAthenticated() {
     return this.afAuth.user;
   }
+
+  logout() {
+    return this.afAuth.auth.signOut();
+  }
 }
