@@ -14,9 +14,11 @@ import { MainComponent } from './components/main/main.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { ResumePipe } from './pipes/resume.pipe';
 
 @NgModule({
   declarations: [
@@ -27,14 +29,17 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    MainComponent
+    MainComponent,
+    ResumePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     ReactiveFormsModule,
+    FormsModule,
     FlashMessagesModule.forRoot()
   ],
   providers: [],

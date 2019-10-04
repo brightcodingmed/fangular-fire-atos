@@ -11,7 +11,7 @@ export class ClientService {
   clientCollection: AngularFirestoreCollection;
 
   constructor(private afs: AngularFirestore) {
-    this.clientCollection = this.afs.collection('clients', ref => ref.where('active', '==', true));
+    this.clientCollection = this.afs.collection('clients');
    }
 
   getClients() {
@@ -36,5 +36,13 @@ export class ClientService {
     return this.clientCollection.doc(id).update({
       active: !active
     });
+  }
+
+  getClient(id: string) {
+    return this.clientCollection.doc(id).valueChanges();
+  }
+
+  updateClient(id, data){
+    return this.clientCollection.doc(id).update(data);
   }
 }

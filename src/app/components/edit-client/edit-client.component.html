@@ -1,1 +1,57 @@
-<p>edit-client works!</p>
+
+<div class="row my-3">
+    <div class="col-md-6">Edit clients</div>
+    <div class="col-md-6 text-right">
+        <a routerLink="/clients" class="btn btn-link">
+            <i class="fa fa-arrow-left"></i> Back to list
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+    <form [formGroup]="clientForm" (ngSubmit)="updateClient()">
+        <div class="form-group">
+            <label for="firstname">FirstName</label>
+            <input formControlName="firstName" id="firstname" type="text" class="form-control">
+            
+                <div class="alert alert-warning" *ngIf="clientForm.get('firstName').hasError('required') && clientForm.get('firstName').touched">
+                    This field is Required !!
+                </div>
+            
+        </div>
+
+        <div class="form-group">
+            <label for="lastname">LastName</label>
+            <input formControlName="lastName" id="lastname" type="text" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input formControlName="email" id="email" type="text" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input formControlName="phone" id="phone" type="text" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="balance">Balance</label>
+            <input formControlName="balance" id="balance" type="number" class="form-control">
+        </div>
+
+       <div class="form-check">
+         <label class="form-check-label">
+           <input formControlName="active" type="checkbox" class="form-check-input">
+           Active
+         </label>
+       </div>
+
+        <button 
+           [disabled]="!clientForm.valid" class="btn btn-warning btn-block">
+            <i class="fa fa-refresh"> Update client</i>
+        </button>
+    </form>
+    </div>
+</div>

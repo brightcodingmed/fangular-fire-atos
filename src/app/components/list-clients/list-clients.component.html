@@ -6,7 +6,7 @@
 
     <div class="col-md-4 text-center">
         <h4>
-           <span class="badge badge-success">{{ total }}</span> 
+           <span class="badge badge-success">{{ total | currency }}</span> 
         </h4>  
     </div>
     <div class="col-md-4 text-right">
@@ -35,14 +35,14 @@
                           [ngStyle]="{ color: client.active ? 'light-green' : 'red'  }" 
                           class="fa fa-power-off">
                         </i>
-                    </span>  {{ client.firstName }} {{ client.lastName }}</td>
+                    </span>  {{ client.firstName | titlecase | resume:4 }} {{ client.lastName | uppercase }}</td>
                     <td>
                         <span class="badge badge-success">Email</span> {{ client.email }} <br>
                         <span class="badge badge-info">Phone</span> {{ client.phone }}
                     </td>
-                    <td>{{ client.balance }}</td>
+                    <td>{{ client.balance | currency:'JPY':'symbol':'1.3-4' }}</td>
                     <td class="text-right" nowrap>
-                        <a href="" class="btn btn-warning btn-sm mr-1">
+                        <a [routerLink]="['/clients/edit', client.id]" class="btn btn-warning btn-sm mr-1">
                             <i class="fa fa-pencil"></i>
                         </a>
                         <button (click)="deleteClient(client.id)" class="btn btn-dark btn-sm">
