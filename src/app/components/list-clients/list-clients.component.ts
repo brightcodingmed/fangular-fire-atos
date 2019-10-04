@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListClientsComponent implements OnInit {
 
+  search = '';
+  allClients: Client[] = [];
   total: number = 0;
   clients: Client[] = [];
 
@@ -22,7 +24,7 @@ export class ListClientsComponent implements OnInit {
   getAllClients() {
     this.clientService.getClients()
         .subscribe((clients: Client[]) => {
-          this.clients = clients;
+          this.allClients = this.clients = clients;
           this.totalBalance();
           console.log(clients);
         })
@@ -60,6 +62,16 @@ export class ListClientsComponent implements OnInit {
       cssClass: css,
       timer: ourTime
     })
+  }
+
+  searchClients() {
+
+      if(this.search) {
+
+        this.allClients = this.clients.filter((client) => client.firstName.toLowerCase().includes(this.search.toLowerCase()) || client.lastName.toLowerCase().includes(this.search.toLowerCase()) || client.email.toLowerCase().includes(this.search))
+      }else {
+        this.allClients = this.clients;
+      }
   }
 
 }
